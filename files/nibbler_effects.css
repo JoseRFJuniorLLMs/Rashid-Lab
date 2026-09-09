@@ -1,0 +1,220 @@
+/* =====================================================
+   EFEITOS VISUAIS NIBBLER - VERSÃO CORRIGIDA
+   Sem opacity: 0 em keyframes com forwards
+   ===================================================== */
+
+/* ===================================
+   EFEITO AZUL - ORIGEM DO LANCE
+   =================================== */
+@keyframes nibbler-origin-effect {
+    0% {
+        box-shadow:
+            inset 0 0 40px 20px rgba(0, 191, 255, 1),
+            0 0 30px 10px rgba(0, 191, 255, 0.8);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+#boardfriends td.nibbler-move-origin {
+    animation: nibbler-origin-effect 0.6s ease-out forwards !important;
+    position: relative !important;
+    z-index: 150 !important;
+}
+
+/* ===================================
+   EFEITO AZUL - DESTINO DO LANCE
+   =================================== */
+@keyframes nibbler-dest-effect {
+    0% {
+        box-shadow:
+            inset 0 0 30px 15px rgba(0, 191, 255, 0.6),
+            0 0 20px 10px rgba(0, 191, 255, 0.5);
+        transform: scale(1);
+    }
+    30% {
+        box-shadow:
+            inset 0 0 70px 35px rgba(0, 191, 255, 1),
+            0 0 40px 20px rgba(0, 191, 255, 0.8);
+        transform: scale(1.08);
+    }
+    100% {
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+#boardfriends td.nibbler-move-destination {
+    animation: nibbler-dest-effect 1s ease-out forwards !important;
+    position: relative !important;
+    z-index: 150 !important;
+}
+
+/* ===================================
+   EFEITO TRILHA
+   =================================== */
+@keyframes nibbler-trail-effect {
+    0% {
+        box-shadow: 0 0 30px 15px rgba(0, 191, 255, 0.8);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+#boardfriends td.nibbler-move-trail {
+    animation: nibbler-trail-effect 0.4s ease-out forwards !important;
+    position: relative !important;
+    z-index: 140 !important;
+}
+
+/* ===================================
+   EFEITO MATE - ORIGEM (VERMELHO)
+   =================================== */
+@keyframes nibbler-mate-origin {
+    0% {
+        box-shadow:
+            inset 0 0 40px 20px rgba(255, 0, 0, 1),
+            0 0 30px 15px rgba(255, 0, 0, 0.8);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+#boardfriends td.nibbler-mate-origin,
+#boardsquares td.nibbler-mate-origin {
+    animation: nibbler-mate-origin 0.8s ease-out forwards !important;
+    position: relative !important;
+    z-index: 200 !important;
+}
+
+/* ===================================
+   EFEITO MATE - DESTINO (VERMELHO)
+   =================================== */
+@keyframes nibbler-mate-destination {
+    0% {
+        box-shadow:
+            inset 0 0 50px 25px rgba(255, 0, 0, 0.8),
+            0 0 40px 20px rgba(255, 0, 0, 0.6);
+        transform: scale(1);
+    }
+    30% {
+        box-shadow:
+            inset 0 0 80px 40px rgba(255, 0, 0, 1),
+            0 0 60px 30px rgba(255, 0, 0, 1);
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow:
+            inset 0 0 20px 10px rgba(255, 0, 0, 0.3),
+            0 0 15px 8px rgba(255, 0, 0, 0.2);
+        transform: scale(1);
+    }
+}
+
+#boardfriends td.nibbler-mate-destination,
+#boardsquares td.nibbler-mate-destination {
+    animation: nibbler-mate-destination 1.2s ease-out forwards !important;
+    position: relative !important;
+    z-index: 200 !important;
+}
+
+/* ===================================
+   POPUP DE QUALIDADE DO LANCE
+   =================================== */
+.nibbler-quality-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 30px 60px;
+    border-radius: 18px;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    z-index: 99999;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    border: 5px solid;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Popup usa animação separada (pode ter opacity porque é removido do DOM depois) */
+@keyframes nibbler-popup-appear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+.nibbler-quality-popup.animate {
+    animation: nibbler-popup-appear 1.4s ease-out forwards;
+}
+
+/* ===================================
+   PERFORMANCE - GPU ACCELERATION
+   =================================== */
+#boardfriends td.nibbler-move-origin,
+#boardfriends td.nibbler-move-destination,
+#boardfriends td.nibbler-move-trail,
+#boardfriends td.nibbler-mate-origin,
+#boardfriends td.nibbler-mate-destination,
+#boardsquares td.nibbler-mate-origin,
+#boardsquares td.nibbler-mate-destination,
+.nibbler-quality-popup {
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* ===================================
+   ACESSIBILIDADE
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    #boardfriends td.nibbler-move-origin,
+    #boardfriends td.nibbler-move-destination,
+    #boardfriends td.nibbler-move-trail,
+    #boardfriends td.nibbler-mate-origin,
+    #boardfriends td.nibbler-mate-destination,
+    #boardsquares td.nibbler-mate-origin,
+    #boardsquares td.nibbler-mate-destination {
+        animation: none !important;
+    }
+
+    .nibbler-quality-popup {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ===================================
+   PROTEÇÃO: Garante opacidade
+   =================================== */
+#boardfriends td,
+#boardsquares td {
+    opacity: 1 !important;
+}

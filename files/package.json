@@ -1,0 +1,35 @@
+{
+  "name": "NibblerX",
+  "version": "2.4.0",
+  "author": "JoseRFJunior",
+  "description": "Leela Chess Zero (Lc0) interface",
+  "license": "GPL-3.0",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoseRFJuniorLLMs/Rashid-Nezhmetdinov"
+  },
+  "dependencies": {
+    "highcharts": "^10.3.3"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "nibblerX",
+    "productName": "NibblerX",
+    "icon": "res/rashid.ico",
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "res/rashid.ico"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "1. e4": {
+    "name": "King's Pawn Opening",
+    "eco": "B00"
+  },
+  "1. e4 e5": {
+    "name": "King's Pawn Game",
+    "eco": "C20"
+  },
+  "1. e4 c5": {
+    "name": "Sicilian Defense",
+    "eco": "B20"
+  },
+  "1. e4 c5 2. Nf3": {
+    "name": "Sicilian Defense: Open",
+    "eco": "B20"
+  },
+  "1. e4 c5 2. Nf3 d6": {
+    "name": "Sicilian Defense: Najdorf Variation",
+    "eco": "B90"
+  },
+  "1. d4": {
+    "name": "Queen's Pawn Opening",
+    "eco": "D00"
+  },
+  "1. d4 d5": {
+    "name": "Queen's Pawn Game",
+    "eco": "D02"
+  },
+  "1. d4 d5 2. c4": {
+    "name": "Queen's Gambit",
+    "eco": "D06"
+  },
+  "1. d4 Nf6": {
+    "name": "Indian Defense",
+    "eco": "E00"
+  },
+  "1. d4 Nf6 2. c4 e6": {
+    "name": "Indian Game: Normal Variation",
+    "eco": "E00"
+  },
+  "1. Nf3": {
+    "name": "Zukertort Opening",
+    "eco": "A04"
+  },
+  "1. c4": {
+    "name": "English Opening",
+    "eco": "A10"
+  }
+}
