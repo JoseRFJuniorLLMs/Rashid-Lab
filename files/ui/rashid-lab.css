@@ -1,0 +1,152 @@
+/* Rashid Lab - Integrated Styles */
+.rashid-nav-bar {
+  display: flex;
+  align-items: center;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 4px 12px;
+  gap: 8px;
+  height: 38px;
+  user-select: none;
+}
+
+.rashid-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: var(--text-md);
+  color: var(--rashid-gold);
+  margin-right: 16px;
+  letter-spacing: 0.5px;
+}
+
+.rashid-brand-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--rashid-gold);
+}
+
+.rashid-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-1);
+  padding: 6px 12px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.rashid-tab-btn:hover {
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
+.rashid-tab-btn.active {
+  background: var(--bg-3);
+  color: var(--rashid-gold);
+  box-shadow: inset 0 -2px 0 var(--rashid-gold);
+}
+
+/* Sacrifice Microscope Panel */
+#rashid-microscope-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-1);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.rashid-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+}
+
+.rashid-metric-label {
+  color: var(--text-2);
+}
+
+.rashid-metric-value {
+  color: var(--text-0);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.rashid-badge-gold {
+  background: rgba(211, 168, 43, 0.15);
+  color: var(--rashid-gold);
+  border: 1px solid rgba(211, 168, 43, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.rashid-badge-red {
+  background: rgba(225, 92, 74, 0.15);
+  color: var(--attack-red);
+  border: 1px solid rgba(225, 92, 74, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.rashid-badge-teal {
+  background: rgba(50, 183, 161, 0.15);
+  color: var(--positive-teal);
+  border: 1px solid rgba(50, 183, 161, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+/* Forecast Pressure Heatmap mini-grid */
+.rashid-pressure-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 160px;
+  height: 160px;
+  gap: 1px;
+  background: var(--bg-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+}
+
+.rashid-pressure-cell {
+  background: var(--bg-1);
+  transition: background-color var(--duration-fast);
+}
+
+/* Accept / Decline comparison card */
+.rashid-tree-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.rashid-branch-card {
+  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  border-left: 3px solid var(--border-medium);
+}
+
+.rashid-branch-card.accept {
+  border-left-color: var(--attack-red);
+}
+
+.rashid-branch-card.decline {
+  border-left-color: var(--analysis-blue);
+}

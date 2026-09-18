@@ -4,7 +4,10 @@
 
 	<meta charset="utf-8">
 	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src http://www.chessdb.cn http://explorer.lichess.ovh"> -->
-	<title>Nibbler</title>
+	<title>Rashid Lab � Sacrifice Research Lab</title>
+		<link rel="stylesheet" type="text/css" href="ui/tokens.css">
+	<link rel="stylesheet" type="text/css" href="ui/theme-dark.css">
+	<link rel="stylesheet" type="text/css" href="ui/rashid-lab.css">
 	<link rel="stylesheet" type="text/css" href="nibbler.css">
 	<link rel="stylesheet" type="text/css" href="nibbler_effects.css">
 
@@ -12,6 +15,22 @@
 </head>
 
 <body>
+
+	<!-- RASHID LAB NAVIGATION & MODE SWITCHER -->
+	<header class="rashid-nav-bar" id="rashid-header">
+		<div class="rashid-brand">
+			<svg class="rashid-brand-icon" viewBox="0 0 24 24">
+				<path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/>
+			</svg>
+			<span>RASHID LAB</span>
+		</div>
+		<button class="rashid-tab-btn active" id="tab-analyze" onclick="switchRashidMode('ANALYZE')">Analyze</button>
+		<button class="rashid-tab-btn" id="tab-sacrifice" onclick="switchRashidMode('SACRIFICE_LAB')">Sacrifice Lab</button>
+		<button class="rashid-tab-btn" id="tab-discover" onclick="switchRashidMode('DISCOVER')">Discover</button>
+		<button class="rashid-tab-btn" id="tab-study" onclick="switchRashidMode('STUDY')">Study</button>
+		<button class="rashid-tab-btn" id="tab-corpus" onclick="switchRashidMode('CORPUS')">Corpus</button>
+	</header>
+
 
 	<!-- note to self, only use id for things the JS needs to see, they pollute the namespace -->
 
@@ -59,6 +78,41 @@
 							</p>
 						</div>
 						<div id="movelist"></div>
+
+						<!-- RASHID SACRIFICE MICROSCOPE PANEL -->
+						<div id="rashid-microscope-panel">
+							<div class="rashid-panel-header">
+								<span>Sacrifice Microscope</span>
+								<span id="rashid-score-badge" class="rashid-badge-gold">Rashid Score: --</span>
+							</div>
+							<div class="rashid-metric-row">
+								<span class="rashid-metric-label">Classification</span>
+								<span class="rashid-metric-value" id="rashid-class-val">--</span>
+							</div>
+							<div class="rashid-metric-row">
+								<span class="rashid-metric-label">Material Invested</span>
+								<span class="rashid-metric-value" id="rashid-material-val">--</span>
+							</div>
+							<div class="rashid-metric-row">
+								<span class="rashid-metric-label">Recovery Horizon</span>
+								<span class="rashid-metric-value" id="rashid-horizon-val">--</span>
+							</div>
+							<div class="rashid-metric-row">
+								<span class="rashid-metric-label">Objective Soundness</span>
+								<span class="rashid-metric-value" id="rashid-soundness-val">--</span>
+							</div>
+
+							<!-- Accept vs Decline Tree -->
+							<div class="rashid-tree-container">
+								<div class="rashid-branch-card accept" id="rashid-accept-card">
+									<strong>Best Acceptance:</strong> <span id="rashid-accept-move">--</span>
+								</div>
+								<div class="rashid-branch-card decline" id="rashid-decline-card">
+									<strong>Best Decline:</strong> <span id="rashid-decline-move">--</span>
+								</div>
+							</div>
+						</div>
+
 						<div id="review_container">
 					<div id="acc_review">
 						<div id="acc_w">
@@ -326,6 +380,20 @@
 	<script src="renderer/96_import.js"></script>
 	<script src="renderer/98_humanmode.js"></script>
 	<script src="highcharts.js"></script>
+
+
+	<script>
+		function switchRashidMode(mode) {
+			console.log('Switched to Rashid Lab Mode:', mode);
+			document.querySelectorAll('.rashid-tab-btn').forEach(b => b.classList.remove('active'));
+			const btn = document.getElementById('tab-' + mode.toLowerCase().replace('_lab', ''));
+			if (btn) btn.classList.add('active');
+			const titleBox = document.getElementById('titlebox');
+			if (titleBox) {
+				titleBox.textContent = mode.replace('_', ' ');
+			}
+		}
+	</script>
 
 </body>
 </html>

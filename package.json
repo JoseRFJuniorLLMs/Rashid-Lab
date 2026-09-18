@@ -1,0 +1,18 @@
+{
+  "name": "rashid-lab",
+  "version": "1.0.0",
+  "description": "Rashid Nezhmetdinov — Sacrifice Research Lab",
+  "author": "JoseRFJunior",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoseRFJuniorLLMs/Rashid-Nezhmetdinov"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node ./files/node_modules/typescript/bin/tsc",
+    "typecheck": "node ./files/node_modules/typescript/bin/tsc --noEmit",
+    "test": "npm run build && node --test dist/tests/**/*.test.js",
+    "start": "npm --prefix files start"
+  }
+}

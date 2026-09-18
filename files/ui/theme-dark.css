@@ -1,0 +1,25 @@
+/* Rashid Lab - Dark Theme (Default) */
+body.theme-dark, body {
+  background-color: var(--bg-0);
+  color: var(--text-0);
+  font-family: var(--font-sans);
+}
+
+.rashid-panel {
+  background: var(--bg-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.rashid-panel-header {
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border-subtle);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--rashid-gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,13 +1,13 @@
 {
-  "name": "NibblerX",
+  "name": "rashid-lab",
   "version": "2.4.0",
   "author": "JoseRFJunior",
-  "description": "Leela Chess Zero (Lc0) interface",
+  "description": "Rashid Nezhmetdinov — Sacrifice Research Lab",
   "license": "GPL-3.0",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JoseRFJuniorLLMs/Rashid-Nezhmetdinov"
+    "url": "https://github.com/JoseRFJuniorLLMs/Rashid-Lab"
   },
   "dependencies": {
     "highcharts": "^10.3.3"
@@ -21,8 +21,8 @@
     "build": "electron-builder"
   },
   "build": {
-    "appId": "nibblerX",
-    "productName": "NibblerX",
+    "appId": "rashidLab",
+    "productName": "Rashid Lab",
     "icon": "res/rashid.ico",
     "files": [
       "**/*"
@@ -31,5 +31,6 @@
       "target": "nsis",
       "icon": "res/rashid.ico"
     }
-  }
+  },
+  "productName": "Rashid Lab"
 }

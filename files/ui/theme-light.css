@@ -1,0 +1,16 @@
+/* Rashid Lab - Light Theme */
+body.theme-light {
+  --bg-0: #f4f5f8;
+  --bg-1: #ffffff;
+  --bg-2: #eaecf0;
+  --bg-3: #dbe0e8;
+  --bg-surface: #f8fafc;
+  --text-0: #10141a;
+  --text-1: #2a3342;
+  --text-2: #5e6673;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.16);
+  --border-strong: rgba(0, 0, 0, 0.28);
+  background-color: var(--bg-0);
+  color: var(--text-0);
+}

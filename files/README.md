@@ -1,1 +1,120 @@
-# Rashid
+# Rashid Lab
+
+> **Rashid Lab is a desktop chess research environment specialized in discovering, validating and studying sacrifices.**
+
+Named in honor of **Rashid Gibiatovich Nezhmetdinov** (1912-1974), the visionary master of intuitive, deep, and aesthetic sacrifices, Rashid Lab is an advanced chess investigation laboratory built to answer one fundamental question:
+
+> **When, why, and how is it sound to invest material?**
+
+---
+
+## 1. Concept
+
+Unlike standard chess GUIs that simply display a generic engine evaluation and flashy badges, **Rashid Lab** is an analytical workbench centered on:
+
+1. **Sacrifice Detection:** Identifying actual sacrifices played on the board.
+2. **True vs Pseudo-Sacrifice:** Rigorously separating real long-term material investments from temporary pseudo-sacrifices, simple tactical combinations, or outright blunders.
+3. **Sacrifice Forecasting:** Anticipating whether a position is evolving toward a sacrifice before it occurs, using calibrated potential scores and 64-square pressure heatmaps.
+4. **Alternative & Missed Sacrifices:** Discovering latent sacrificial opportunities that neither player found during the game.
+5. **Acceptance vs Decline Trees:** Computing and comparing the best replies when accepting vs declining an offer.
+6. **Compensation Modeling:** Quantifying the objective return on material across King Safety, Piece Mobility, Center Control, Open Files/Diagonals, and Initiative.
+7. **Motif Classification:** Tagging the positional and tactical mechanisms driving the sacrifice (e.g., King Hunt, Clearance, Deflection, Decoy, Interference).
+8. **Multi-Engine Consensus:** Comparing Stockfish (tactical brute force) with Leela Chess Zero (Lc0, deep positional intuition) to find consensual or controversial ideas.
+9. **Interactive Study Mode:** Transforming discovered sacrifices into customized exercises with spaced repetition.
+10. **Player Sacrifice Signatures:** Profiling the sacrifice styles of legendary masters (Nezhmetdinov, Tal, Alekhine, Kasparov, etc.) and player collections.
+
+---
+
+## 2. Core Modules & Architecture
+
+The application is structured into a clean, modular, and decoupled architecture:
+
+`
+src/
+├── types/             # Domain definitions for positions, candidates, evaluations, sacrifices, forecast
+├── shared/
+│   ├── event-bus.ts   # Strongly typed AnalysisEventBus
+│   ├── cache.ts       # L1 LRU memory cache & L2 persistent cache with full provenance
+│   └── config.ts      # Configurable thresholds (SacrificeConfig, ClassificationConfig, EngineProfile)
+├── engine/
+│   ├── engine-session.ts  # FSM lifecycle (IDLE, READY, ANALYZING, STOPPING, RECOVERING) with searchmoves
+│   ├── fake-uci-engine.ts # Deterministic UCI stub for automated unit and integration tests
+│   └── engine-manager.ts  # Multi-engine coordinator (Stockfish + Lc0 consensus & disagreement)
+├── analysis/
+│   ├── analysis-coordinator.ts # Active analysis state, stale result protection, plugin dispatcher
+│   ├── job-scheduler.ts        # Priority-based job queue (P0 to P7) with cancellation support
+│   └── plugin.ts               # AnalysisPlugin contracts
+├── domain/
+│   ├── sacrifice/
+│   │   ├── quick-material-filter.ts    # Fast PV material delta and capture timeline scanner
+│   │   ├── candidate-search-service.ts # Independent candidate discovery & searchmoves grouping
+│   │   ├── acceptance-analyzer.ts      # Offer acceptance evaluation & expected score
+│   │   ├── decline-analyzer.ts         # Decline alternatives and best defense ranking
+│   │   ├── recapture-filter.ts         # Immediate exchange & pseudo-sacrifice filter
+│   │   ├── recovery-horizon.ts         # Material timeline tracking and recovery ply estimation
+│   │   ├── rashid-score.ts             # Rashid Score (0-100) synthesis calculation
+│   │   └── sacrifice-engine.ts         # End-to-end classification & evidence generation
+│   ├── motifs/
+│   │   └── motif-classifier.ts         # Tactical & positional motif detection
+│   ├── compensation/
+│   │   └── compensation-model.ts       # Quantitative compensation breakdown
+│   ├── behavior/
+│   │   └── temptation-analyzer.ts      # Human temptation score & defender suspicion modeling
+│   ├── trap/
+│   │   └── trap-analyzer.ts            # Sacrifice & tactical trap analysis with punishment validation
+│   ├── forecast/
+│   │   └── sacrifice-forecast-engine.ts # Multi-horizon forecast, uninflated potential, pressure map
+│   ├── study/
+│   │   └── study-service.ts            # Dynamic sacrifice exercises & spaced repetition
+│   └── corpus/
+│       ├── corpus-scanner.ts           # Batch PGN scanning and sacrifice opportunity indexing
+│       └── player-signature.ts         # Style DNA & behavioral sacrifice profiling
+└── corpus/
+    └── gold-corpus.ts                  # Gold benchmark corpus (>= 200 validated positions)
+`
+
+---
+
+## 3. The 5 Core Modes
+
+1. **ANALYZE:** Classical deep analysis with native WDL, MultiPV, engine evaluation, and candidate variations.
+2. **SACRIFICE LAB:** Dedicated sacrifice microscope displaying material deficit timeline, recovery horizon, accept/decline tree, compensation metrics, and the Rashid Score.
+3. **DISCOVER:** Scans games to uncover missed sacrifices and unplayed candidate lines across deep search plies.
+4. **STUDY:** Practical training laboratory where you solve and calculate sacrifices, defenses, and motifs without engine assistance.
+5. **CORPUS:** Statistical study of grandmaster games and personal repertoires to analyze sacrifice frequency, favorite piece sacrifices, and motifs.
+
+---
+
+## 4. Installation & Requirements
+
+- **Node.js:** >= 20 (Node 24 recommended)
+- **Engines:** Stockfish and/or Lc0 (Leela Chess Zero) installed locally
+
+### Quick Start
+`ash
+# Install dependencies
+npm install
+
+# Run automated test suite
+npm test
+
+# Check types
+npm run typecheck
+
+# Start Rashid Lab
+npm start
+`
+
+---
+
+## 5. Privacy & Offline-First
+
+- **100% Offline-First:** Engine analysis, database storage, and calculations run completely locally on your hardware.
+- **Zero Telemetry:** No games, moves, or analysis data are ever transmitted to external servers.
+
+---
+
+## 6. License & Attribution
+
+- **License:** GPL-3.0
+- **Lineage:** Rashid Lab builds upon the pioneering work of **Nibbler** by *lukasmonk* and subsequent contributors, re-architecting the system into a specialized sacrifice research platform with custom UI, decoupled domain logic, and advanced analytical capabilities.

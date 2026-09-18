@@ -88,6 +88,7 @@ function startup() {
 			backgroundThrottling: false,
 			contextIsolation: false,
 			nodeIntegration: true,
+			preload: path.join(__dirname, "main", "preload.js"),
 			spellcheck: false,
 			zoomFactor: desired_zoomfactor,		// Unreliable, see https://github.com/electron/electron/issues/10572
 		}
